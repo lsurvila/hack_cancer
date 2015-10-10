@@ -1,10 +1,13 @@
 package co.hackcancer.hackcancer;
 
+import android.content.res.Resources;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import co.hackcancer.hackcancer.network.HackCancerApi;
@@ -16,15 +19,14 @@ import rx.functions.Action1;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class WelcomeFragment extends Fragment {
 
-    public MainActivityFragment() {
-    }
+    protected TextView mWelcomeText;
+    protected TextView mSupporterText;
+    protected TextView mFighterText;
+    protected RelativeLayout mWelcomeContainer;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+    public WelcomeFragment() {
     }
 
     @Override
@@ -57,7 +59,6 @@ public class MainActivityFragment extends Fragment {
                         showError(throwable);
                     }
                 });
-
     }
 
     private void showUsers(UserResponse userResponse) {
@@ -72,4 +73,19 @@ public class MainActivityFragment extends Fragment {
         Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        mWelcomeContainer = (RelativeLayout) inflater.inflate(R.layout.fragment_welcome, null, false);
+
+        populateWidgets();
+
+        return mWelcomeContainer;
+    }
+
+    private void populateWidgets() {
+        mWelcomeText = (TextView) mWelcomeContainer.findViewById(R.id.welcomeMessage);
+        mSupporterText = (TextView) mWelcomeContainer.findViewById(R.id.supporter);
+        mFighterText = (TextView) mWelcomeContainer.findViewById(R.id.fighter);
+    }
 }
