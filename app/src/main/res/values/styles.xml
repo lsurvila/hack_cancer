@@ -24,10 +24,10 @@
 
     <style name="WelcomeHeading" parent="AppTheme">
         <item name="android:textColor">@color/textColour</item>
-        <item name="android:textSize">31sp</item>
+        <item name="android:textSize">26sp</item>
     </style>
 
     <style name="WelcomeButton" parent="WelcomeHeading">
-        <item name="android:background">@color/WelcomeButtonColour</item>
+        <item name="android:background">@drawable/rounded_button</item>
     </style>
 </resources>
