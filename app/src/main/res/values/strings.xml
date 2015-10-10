@@ -6,4 +6,17 @@
     <string name="IAmA">I am a</string>
     <string name="Fighter">Fighter</string>
     <string name="Supporter">Supporter</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="section_cheers">Cheers</string>
+    <string name="section_calendar">Calendar</string>
+    <string name="section_care_package">Care Package</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
 </resources>
