@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import co.hackcancer.hackcancer.helper.VerticalDividerSpaceItemDecoration;
 import co.hackcancer.hackcancer.network.MockHackCancerApi;
@@ -39,6 +41,7 @@ public class CheersFragment extends Fragment {
 
     private CheersAdapter cheersAdapter;
     private RecyclerView listView;
+    private ProgressBar progressBar;
     private CheersAdapter adapter;
 
     /**
@@ -77,9 +80,10 @@ public class CheersFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cheers, container, false);
+        progressBar = (ProgressBar) view.findViewById(R.id.cheers_loading);
         listView = (RecyclerView) view.findViewById(R.id.cheers_list);
         listView.setLayoutManager(new LinearLayoutManager(getContext()));
-        listView.addItemDecoration(new VerticalDividerSpaceItemDecoration(100));
+        listView.addItemDecoration(new VerticalDividerSpaceItemDecoration(getResources().getDimensionPixelOffset(R.dimen.cheers_divider_height)));
         adapter = new CheersAdapter();
         listView.setAdapter(adapter);
         return view;
@@ -93,12 +97,15 @@ public class CheersFragment extends Fragment {
                 .subscribe(new Action1<CheersResponse>() {
                     @Override
                     public void call(CheersResponse cheersResponse) {
+                        progressBar.setVisibility(View.GONE);
                         adapter.refresh(cheersResponse.cheers);
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        throwable.printStackTrace();
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+
                     }
                 });
     }
