@@ -6,4 +6,6 @@
 
     <color name="backgroundColour">#8B6CE3</color>
     <color name="textColour">#FFFFFF</color>
+
+    <color name="WelcomeButtonColour">#C8BDFF</color>
 </resources>

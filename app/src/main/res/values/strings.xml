@@ -2,7 +2,7 @@
     <string name="app_name">Care &amp; Share</string>
     <string name="action_settings">Settings</string>
 
-    <string name="WelcomeText">Welcome to Care &amp; Share</string>
+    <string name="WelcomeText">Hi %s, what are you here for?</string>
     <string name="IAmA">I am a</string>
     <string name="Fighter">Fighter</string>
     <string name="Supporter">Supporter</string>
