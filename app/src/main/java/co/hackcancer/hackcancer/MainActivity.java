@@ -12,7 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity implements
         CalendarFragment.OnFragmentInteractionListener,
         CarePackageFragment.OnFragmentInteractionListener,
-        CheersFragment.OnFragmentInteractionListener {
+        CheersFragment.OnFragmentInteractionListener,
+        ProfileFragment.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -77,13 +78,15 @@ public class MainActivity extends AppCompatActivity implements
                     return CalendarFragment.newInstance("param1", "param2");
                 case 2:
                     return CarePackageFragment.newInstance("param1", "param2");
+                case 3:
+                    return ProfileFragment.newInstance("param1", "param2");
             }
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 4;
         }
 
         @Override
@@ -95,6 +98,8 @@ public class MainActivity extends AppCompatActivity implements
                     return getString(R.string.section_calendar);
                 case 2:
                     return getString(R.string.section_care_package);
+                case 3:
+                    return getString(R.string.section_profile);
             }
             return null;
         }
