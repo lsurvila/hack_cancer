@@ -6,12 +6,15 @@ import rx.Observable;
 
 public class HackCancerApi {
 
+    private static HackCancerApi ourInstance;
+
     private static final String ENDPOINT = "https://sheetsu.com/";
     private HackCancerService service;
 
-    private static HackCancerApi ourInstance = new HackCancerApi();
-
     public static HackCancerApi getInstance() {
+        if (ourInstance == null) {
+            ourInstance = new HackCancerApi();
+        }
         return ourInstance;
     }
 
@@ -23,8 +26,8 @@ public class HackCancerApi {
         service = restAdapter.create(HackCancerService.class);
     }
 
-    public Observable<UserResponse> getUser() {
-        return service.getUser();
+    public Observable<UserResponse> getUsers() {
+        return service.getUsers();
     }
 
 }

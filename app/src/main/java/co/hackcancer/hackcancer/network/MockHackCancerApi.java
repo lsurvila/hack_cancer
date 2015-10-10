@@ -1,5 +1,8 @@
 package co.hackcancer.hackcancer.network;
 
+import android.content.Context;
+
+import co.hackcancer.hackcancer.helper.JsonHelper;
 import co.hackcancer.hackcancer.network.response.UserResponse;
 import retrofit.MockRestAdapter;
 import retrofit.RestAdapter;
@@ -10,32 +13,43 @@ public class MockHackCancerApi {
 
     private HackCancerService service;
 
-    private static MockHackCancerApi ourInstance = new MockHackCancerApi();
+    private static MockHackCancerApi ourInstance;
 
-    public static MockHackCancerApi getInstance() {
+    public static MockHackCancerApi getInstance(Context context) {
+        if (ourInstance == null) {
+            ourInstance = new MockHackCancerApi(context);
+        }
         return ourInstance;
     }
 
-    public MockHackCancerApi() {
+    public MockHackCancerApi(Context context) {
         RestAdapter restAdapter = new RestAdapter.Builder()
+                .setEndpoint("mock")
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
         MockRestAdapter mockRestAdapter = MockRestAdapter.from(restAdapter);
-        service = mockRestAdapter.create(HackCancerService.class, new MockHackCancerService());
+        service = mockRestAdapter.create(HackCancerService.class, new MockHackCancerService(context));
     }
 
-    private Observable<UserResponse> getUser() {
-        return service.getUser();
+    public Observable<UserResponse> getUsers() {
+        return service.getUsers();
     }
 
     private class MockHackCancerService implements HackCancerService {
 
+        private Context context;
+
+        public MockHackCancerService(Context context) {
+            this.context = context;
+        }
+
         @Override
-        public Observable<UserResponse> getUser() {
+        public Observable<UserResponse> getUsers() {
             return Observable.create(new Observable.OnSubscribe<UserResponse>() {
                 @Override
                 public void call(Subscriber<? super UserResponse> subscriber) {
-                    //TODO mock response
+                    subscriber.onNext(JsonHelper.getJsonAsObjectFromAssetsFile(context, "users_response.json", UserResponse.class));
+                    subscriber.onCompleted();
                 }
             });
         }

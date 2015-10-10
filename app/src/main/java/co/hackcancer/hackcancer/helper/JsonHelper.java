@@ -26,4 +26,17 @@ public class JsonHelper {
         return list;
     }
 
+    public static <T> T getJsonAsObjectFromAssetsFile(Context context, String fileName, Class<T> type) {
+        Gson gson = new Gson();
+        T object = null;
+        try {
+            InputStream inputStream = context.getAssets().open(fileName);
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            object = gson.fromJson(inputStreamReader, type);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return object;
+    }
+
 }

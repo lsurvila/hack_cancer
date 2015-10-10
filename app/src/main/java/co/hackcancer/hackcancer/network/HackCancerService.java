@@ -7,6 +7,6 @@ import rx.Observable;
 public interface HackCancerService {
 
     @GET("/apis/9da51a4a")
-    Observable<UserResponse> getUser();
+    Observable<UserResponse> getUsers();
 
 }

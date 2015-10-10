@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import co.hackcancer.hackcancer.network.HackCancerApi;
+import co.hackcancer.hackcancer.network.MockHackCancerApi;
 import co.hackcancer.hackcancer.network.response.UserResponse;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -29,18 +30,46 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        HackCancerApi.getInstance().getUser()
+        HackCancerApi.getInstance().getUsers()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<UserResponse>() {
                     @Override
                     public void call(UserResponse userResponse) {
-                        Toast.makeText(getContext(), "Hello " + userResponse.getResult().get(0).getName(), Toast.LENGTH_SHORT).show();
+                        showUsers(userResponse);
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        showError(throwable);
                     }
                 });
+
+        MockHackCancerApi.getInstance(getContext()).getUsers()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<UserResponse>() {
+                    @Override
+                    public void call(UserResponse userResponse) {
+                        showUsers(userResponse);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        showError(throwable);
+                    }
+                });
+
     }
+
+    private void showUsers(UserResponse userResponse) {
+        String users = "";
+        for (UserResponse.Result user : userResponse.getResult()) {
+            users += user.getName() + " ";
+        }
+        Toast.makeText(getContext(), users, Toast.LENGTH_SHORT).show();
+    }
+
+    private void showError(Throwable throwable) {
+        Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
 }
