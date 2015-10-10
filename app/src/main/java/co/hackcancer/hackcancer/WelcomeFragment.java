@@ -24,6 +24,7 @@ public class WelcomeFragment extends Fragment {
     protected TextView mWelcomeText;
     protected TextView mSupporterText;
     protected TextView mFighterText;
+    protected TextView mHiThereText;
     protected RelativeLayout mWelcomeContainer;
 
     public WelcomeFragment() {
@@ -87,5 +88,8 @@ public class WelcomeFragment extends Fragment {
         mWelcomeText = (TextView) mWelcomeContainer.findViewById(R.id.welcomeMessage);
         mSupporterText = (TextView) mWelcomeContainer.findViewById(R.id.supporter);
         mFighterText = (TextView) mWelcomeContainer.findViewById(R.id.fighter);
+        mHiThereText = (TextView) mWelcomeContainer.findViewById(R.id.hiThere);
+
+        mHiThereText.setText(String.format(getString(R.string.WelcomeText), "Chris"));
     }
 }
