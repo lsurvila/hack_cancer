@@ -10,12 +10,7 @@ import android.view.ViewGroup;
 
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CarePackageFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CarePackageFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Allows Fighter to see care packages from people and allows to rate them.
  */
 public class CarePackageFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match

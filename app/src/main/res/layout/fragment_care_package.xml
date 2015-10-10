@@ -45,4 +45,58 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_content"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/they_contributed"
+            android:textSize="20sp"
+            android:paddingBottom="16dp"
+            android:textColor="@color/colorAccent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/contributed_profile_pic_dim"
+                android:layout_height="@dimen/contributed_profile_pic_dim"
+                android:paddingRight="8dp"
+                android:src="@drawable/profilepic_chim" />
+
+            <ImageView
+                android:layout_width="@dimen/contributed_profile_pic_dim"
+                android:layout_height="@dimen/contributed_profile_pic_dim"
+                android:paddingRight="8dp"
+                android:src="@drawable/profilepic_chris" />
+
+            <ImageView
+                android:layout_width="@dimen/contributed_profile_pic_dim"
+                android:layout_height="@dimen/contributed_profile_pic_dim"
+                android:paddingRight="8dp"
+                android:src="@drawable/profilepic_joshua" />
+
+            <ImageView
+                android:layout_width="@dimen/contributed_profile_pic_dim"
+                android:layout_height="@dimen/contributed_profile_pic_dim"
+                android:paddingRight="8dp"
+                android:src="@drawable/profilepic_liudas" />
+
+            <ImageView
+                android:layout_width="@dimen/contributed_profile_pic_dim"
+                android:layout_height="@dimen/contributed_profile_pic_dim"
+                android:src="@drawable/profilepic_chris"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>

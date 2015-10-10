@@ -22,5 +22,6 @@
     <string name="how_are_you">How are you feeling today?</string>
     <string name="package_is_coming">A care package is coming your way!</string>
     <string name="suggest_items">Suggest items</string>
+    <string name="they_contributed">They contributed:</string>
 
 </resources>

@@ -14,9 +14,6 @@ import java.util.List;
 import co.hackcancer.hackcancer.network.ProfileImagesHolder;
 import co.hackcancer.hackcancer.network.response.Cheer;
 
-/**
- * Allows Fighter to see cheers from people and update status.
- */
 public class CheersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int VIEW_TYPE_STATUS = 0;

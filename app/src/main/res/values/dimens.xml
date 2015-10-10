@@ -8,4 +8,5 @@
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="cheers_divider_height">40dp</dimen>
+    <dimen name="contributed_profile_pic_dim">70dp</dimen>
 </resources>
