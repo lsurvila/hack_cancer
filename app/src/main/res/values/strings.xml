@@ -4,8 +4,8 @@
 
     <string name="WelcomeText">Hi %s, what are you here for?</string>
     <string name="IAmA">I am a</string>
-    <string name="Fighter">Fighter</string>
-    <string name="Supporter">Supporter</string>
+    <string name="Fighter">fighting cancer</string>
+    <string name="Supporter">supporting a friend</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
