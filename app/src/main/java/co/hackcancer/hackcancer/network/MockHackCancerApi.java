@@ -3,9 +3,11 @@ package co.hackcancer.hackcancer.network;
 import android.content.Context;
 
 import co.hackcancer.hackcancer.helper.JsonHelper;
+import co.hackcancer.hackcancer.network.response.CheersResponse;
 import co.hackcancer.hackcancer.network.response.UserResponse;
 import retrofit.MockRestAdapter;
 import retrofit.RestAdapter;
+import retrofit.http.Path;
 import rx.Observable;
 import rx.Subscriber;
 
@@ -35,6 +37,10 @@ public class MockHackCancerApi {
         return service.getUsers();
     }
 
+    public Observable<CheersResponse> getCheers(int userId) {
+        return service.getCheers(userId);
+    }
+
     private class MockHackCancerService implements HackCancerService {
 
         private Context context;
@@ -49,6 +55,17 @@ public class MockHackCancerApi {
                 @Override
                 public void call(Subscriber<? super UserResponse> subscriber) {
                     subscriber.onNext(JsonHelper.getJsonAsObjectFromAssetsFile(context, "users_response.json", UserResponse.class));
+                    subscriber.onCompleted();
+                }
+            });
+        }
+
+        @Override
+        public Observable<CheersResponse> getCheers(@Path("user_id") int userId) {
+            return Observable.create(new Observable.OnSubscribe<CheersResponse>() {
+                @Override
+                public void call(Subscriber<? super CheersResponse> subscriber) {
+                    subscriber.onNext(JsonHelper.getJsonAsObjectFromAssetsFile(context, "cheers_response.json", CheersResponse.class));
                     subscriber.onCompleted();
                 }
             });

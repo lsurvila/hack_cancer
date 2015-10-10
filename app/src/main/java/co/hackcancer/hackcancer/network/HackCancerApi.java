@@ -1,5 +1,6 @@
 package co.hackcancer.hackcancer.network;
 
+import co.hackcancer.hackcancer.network.response.CheersResponse;
 import co.hackcancer.hackcancer.network.response.UserResponse;
 import retrofit.RestAdapter;
 import rx.Observable;
@@ -8,7 +9,7 @@ public class HackCancerApi {
 
     private static HackCancerApi ourInstance;
 
-    private static final String ENDPOINT = "https://sheetsu.com/";
+    private static final String ENDPOINT = "https://secure-ravine-7447.herokuapp.com/";
     private HackCancerService service;
 
     public static HackCancerApi getInstance() {
@@ -28,6 +29,10 @@ public class HackCancerApi {
 
     public Observable<UserResponse> getUsers() {
         return service.getUsers();
+    }
+
+    public Observable<CheersResponse> getCheers(int userId) {
+        return service.getCheers(userId);
     }
 
 }

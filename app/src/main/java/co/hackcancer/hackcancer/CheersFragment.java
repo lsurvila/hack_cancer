@@ -4,9 +4,17 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import co.hackcancer.hackcancer.helper.VerticalDividerSpaceItemDecoration;
+import co.hackcancer.hackcancer.network.MockHackCancerApi;
+import co.hackcancer.hackcancer.network.response.CheersResponse;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 
 /**
@@ -28,6 +36,10 @@ public class CheersFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private CheersAdapter cheersAdapter;
+    private RecyclerView listView;
+    private CheersAdapter adapter;
 
     /**
      * Use this factory method to create a new instance of
@@ -64,7 +76,31 @@ public class CheersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cheers, container, false);
+        View view = inflater.inflate(R.layout.fragment_cheers, container, false);
+        listView = (RecyclerView) view.findViewById(R.id.cheers_list);
+        listView.setLayoutManager(new LinearLayoutManager(getContext()));
+        listView.addItemDecoration(new VerticalDividerSpaceItemDecoration(100));
+        adapter = new CheersAdapter();
+        listView.setAdapter(adapter);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        MockHackCancerApi.getInstance(getContext()).getCheers(1)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<CheersResponse>() {
+                    @Override
+                    public void call(CheersResponse cheersResponse) {
+                        adapter.refresh(cheersResponse.cheers);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                    }
+                });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
