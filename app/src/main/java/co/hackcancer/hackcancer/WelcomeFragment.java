@@ -28,12 +28,13 @@ public class WelcomeFragment extends Fragment {
     protected RelativeLayout mWelcomeContainer;
 
     public WelcomeFragment() {
+        super();
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        HackCancerApi.getInstance().getUsers()
+        /*HackCancerApi.getInstance().getUsers()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<UserResponse>() {
                     @Override
@@ -59,7 +60,7 @@ public class WelcomeFragment extends Fragment {
                     public void call(Throwable throwable) {
                         showError(throwable);
                     }
-                });
+                });*/
     }
 
     private void showUsers(UserResponse userResponse) {
