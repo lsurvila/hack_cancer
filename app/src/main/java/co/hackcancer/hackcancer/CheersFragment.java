@@ -20,12 +20,7 @@ import rx.functions.Action1;
 
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CheersFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CheersFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Allows Fighter to see cheers from people and update status.
  */
 public class CheersFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match

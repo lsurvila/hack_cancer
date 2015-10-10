@@ -20,5 +20,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="how_are_you">How are you feeling today?</string>
+    <string name="package_is_coming">A care package is coming your way!</string>
+    <string name="suggest_items">Suggest items</string>
 
 </resources>
