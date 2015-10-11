@@ -43,6 +43,7 @@ public class CarePackageFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private ProductRatingsAdapter adapter;
     private List<ImageView> profilePics = new ArrayList<>();
+    private View supportersView;
 
     /**
      * Use this factory method to create a new instance of
@@ -94,6 +95,7 @@ public class CarePackageFragment extends Fragment {
         profilePics.add(supporter3);
         profilePics.add(supporter4);
         profilePics.add(supporter5);
+        supportersView = view.findViewById(R.id.container_supporters);
         return view;
     }
 
@@ -101,6 +103,7 @@ public class CarePackageFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getSupportersAndPackages();
+
     }
 
     private void getSupportersAndPackages() {
@@ -110,12 +113,13 @@ public class CarePackageFragment extends Fragment {
                     @Override
                     public void call(SupportersResponse supportersResponse) {
                         if (supportersResponse.supporters.size() > 0) {
+                            getPackages();
+                            supportersView.setVisibility(View.VISIBLE);
                             for (int i = 0; i < supportersResponse.supporters.size(); i++) {
                                 Supporter supporter = supportersResponse.supporters.get(i);
                                 profilePics.get(i).setVisibility(View.VISIBLE);
                                 profilePics.get(i).setImageResource(StaticDataHolder.getInstance().getProfileImage(supporter.id));
                             }
-                            getPackages();
                         }
                     }
                 }, new Action1<Throwable>() {

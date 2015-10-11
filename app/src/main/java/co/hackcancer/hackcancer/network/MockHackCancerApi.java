@@ -42,6 +42,10 @@ public class MockHackCancerApi {
         return service.getPackages(userId);
     }
 
+    public Observable<SupportersResponse> getSupporters(int userId) {
+        return service.getSupporters(userId);
+    }
+
     private class MockHackCancerService implements HackCancerService {
 
         private Context context;
@@ -74,7 +78,13 @@ public class MockHackCancerApi {
 
         @Override
         public Observable<SupportersResponse> getSupporters(@Path("user_id") int userId) {
-            return null;
+            return Observable.create(new Observable.OnSubscribe<SupportersResponse>() {
+                @Override
+                public void call(Subscriber<? super SupportersResponse> subscriber) {
+                    subscriber.onNext(JsonHelper.getJsonAsObjectFromAssetsFile(context, "supporters_empty_response.json", SupportersResponse.class));
+                    subscriber.onCompleted();
+                }
+            });
         }
     }
 
