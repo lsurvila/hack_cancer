@@ -13,7 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import co.hackcancer.hackcancer.helper.VerticalDividerSpaceItemDecoration;
-import co.hackcancer.hackcancer.network.MockHackCancerApi;
+import co.hackcancer.hackcancer.network.HackCancerApi;
 import co.hackcancer.hackcancer.network.StaticDataHolder;
 import co.hackcancer.hackcancer.network.response.CheersResponse;
 import rx.Subscription;
@@ -96,7 +96,7 @@ public class CheersFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        cheersSubscription = MockHackCancerApi.getInstance(getContext()).getCheers(StaticDataHolder.getUserId())
+        cheersSubscription = HackCancerApi.getInstance().getCheers(StaticDataHolder.getUserId())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<CheersResponse>() {
                     @Override
