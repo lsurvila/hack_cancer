@@ -5,6 +5,7 @@ import android.content.Context;
 import co.hackcancer.hackcancer.helper.JsonHelper;
 import co.hackcancer.hackcancer.network.response.CheersResponse;
 import co.hackcancer.hackcancer.network.response.PackagesResponse;
+import co.hackcancer.hackcancer.network.response.StatusResponse;
 import co.hackcancer.hackcancer.network.response.SupportersResponse;
 import retrofit.MockRestAdapter;
 import retrofit.RestAdapter;
@@ -82,6 +83,17 @@ public class MockHackCancerApi {
                 @Override
                 public void call(Subscriber<? super SupportersResponse> subscriber) {
                     subscriber.onNext(JsonHelper.getJsonAsObjectFromAssetsFile(context, "supporters_empty_response.json", SupportersResponse.class));
+                    subscriber.onCompleted();
+                }
+            });
+        }
+
+        @Override
+        public Observable<StatusResponse> getStatuses(@Path("user_id") int userId) {
+            return Observable.create(new Observable.OnSubscribe<StatusResponse>() {
+                @Override
+                public void call(Subscriber<? super StatusResponse> subscriber) {
+                    subscriber.onNext(JsonHelper.getJsonAsObjectFromAssetsFile(context, "statuses_empty_response.json", StatusResponse.class));
                     subscriber.onCompleted();
                 }
             });
