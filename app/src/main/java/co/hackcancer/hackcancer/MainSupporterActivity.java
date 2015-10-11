@@ -60,7 +60,7 @@ public class MainSupporterActivity extends AppCompatActivity implements
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.getTabAt(0).setIcon(R.drawable.ribbon);
         tabLayout.getTabAt(1).setIcon(R.drawable.heart_messages);
-        tabLayout.getTabAt(2).setIcon(StaticDataHolder.getInstance().getProfileImage(StaticDataHolder.getUserId()));
+        tabLayout.getTabAt(2).setIcon(StaticDataHolder.getInstance().getProfileImage(3));
     }
 
     @Override
@@ -119,7 +119,7 @@ public class MainSupporterActivity extends AppCompatActivity implements
                 case 1:
                     return CalendarFragment.newInstance("param1", "param2");
                 case 2:
-                    return CarePackageFragment.newInstance("param1", "param2");
+                    return CalendarFragment.newInstance("param1", "param2");
             }
         }
 

@@ -21,12 +21,12 @@
 
             <co.hackcancer.hackcancer.layouts.RoundedImageView
                 android:id="@+id/profilePic"
-                android:src="@drawable/profilepic_adriana"
+                android:src="@drawable/profilepic_debra"
                 android:layout_width="50dp"
                 android:layout_height="50dp" />
 
             <TextView
-                android:text="@string/Adriana"
+                android:text="Debra"
                 android:textColor="@color/textColour"
                 android:paddingLeft="10dp"
                 android:textSize="20dp"
