@@ -16,6 +16,8 @@ public class WelcomeActivity extends AppCompatActivity {
     private Fragment mFacebookFragment;
     private Fragment mYourFriendsFragment;
 
+    private Boolean mFighter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     sleep(1000);
                     progress.dismiss();
                     finish();
-                    startActivity(new Intent(getBaseContext(), MainActivity.class));
+                    startActivity(new Intent(getBaseContext(), mFighter ? MainActivity.class : MainSupporterActivity.class));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -61,15 +63,32 @@ public class WelcomeActivity extends AppCompatActivity {
         fragmentManager.beginTransaction()
                 .replace(R.id.mainFrame, mFacebookFragment)
                 .commit();
+
+        mFighter = true;
+    }
+
+    public void goToSupporterLogin(View view) {
+        mFacebookFragment = new FacebookLoginFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.mainFrame, mFacebookFragment)
+                .commit();
+
+        mFighter = false;
     }
 
     public void skipFbInvites(View view) {
-        mYourFriendsFragment = new YourFriendsFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.mainFrame, mYourFriendsFragment)
-                .commit();
-        //startActivity(new Intent(getBaseContext(), MainSupporterActivity.class));
+
+        if (mFighter) {
+            startActivity(new Intent(getBaseContext(), MainActivity.class));
+            return;
+        } else {
+            mYourFriendsFragment = new YourFriendsFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.mainFrame, mYourFriendsFragment)
+                    .commit();
+        }
     }
 
 }
