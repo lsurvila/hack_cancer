@@ -64,6 +64,7 @@
         android:textAlignment="center"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/fighter"
+        android:onClick="goToSupporterLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

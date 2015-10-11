@@ -1,0 +1,260 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="co.hackcancer.hackcancer.CheersFragment">
+
+    <ProgressBar
+        android:id="@+id/cheers_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/color_content"
+        android:padding="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <co.hackcancer.hackcancer.layouts.RoundedImageView
+                android:id="@+id/profilePic"
+                android:src="@drawable/profilepic_adriana"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:text="@string/Adriana"
+                android:textColor="@color/textColour"
+                android:paddingLeft="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:paddingTop="12dp"
+                android:layout_toRightOf="@id/profilePic"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/cheersAndDays"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_below="@id/profilePic"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="120"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/textColour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:text="Cheers"
+                        android:textColor="@color/textColour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="7 days"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/textColour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="to next session"
+                    android:textColor="@color/textColour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+    </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="20dp"
+            android:layout_below="@id/cheersAndDays"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/cheer"
+                style="@style/SmallerButton"
+                android:text="Cheer"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:textAlignment="center"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/care"
+                style="@style/SmallerButton"
+                android:text="Care"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:textAlignment="center"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/package_is_coming"
+                android:textSize="20sp"
+                android:textColor="@color/colorAccent"
+                android:gravity="center_horizontal"
+                android:paddingBottom="4dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/suggest_items"
+                android:textAllCaps="false"
+                android:background="@drawable/rounded_button"
+                android:textColor="@color/colorAccent"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_supporters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/they_contributed"
+            android:textSize="20sp"
+            android:paddingBottom="8dp"
+            android:textColor="@color/colorAccent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/supporter_1"
+                android:layout_width="@dimen/contributed_profile_pic_dim"
+                android:layout_height="@dimen/contributed_profile_pic_dim"
+                android:paddingRight="8dp"
+                android:src="@drawable/profilepic_chim"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/supporter_2"
+                android:layout_width="@dimen/contributed_profile_pic_dim"
+                android:layout_height="@dimen/contributed_profile_pic_dim"
+                android:paddingRight="8dp"
+                android:src="@drawable/profilepic_chris"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/supporter_3"
+                android:layout_width="@dimen/contributed_profile_pic_dim"
+                android:layout_height="@dimen/contributed_profile_pic_dim"
+                android:paddingRight="8dp"
+                android:src="@drawable/profilepic_joshua"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/supporter_4"
+                android:layout_width="@dimen/contributed_profile_pic_dim"
+                android:layout_height="@dimen/contributed_profile_pic_dim"
+                android:paddingRight="8dp"
+                android:src="@drawable/profilepic_liudas"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/supporter_5"
+                android:layout_width="@dimen/contributed_profile_pic_dim"
+                android:layout_height="@dimen/contributed_profile_pic_dim"
+                android:src="@drawable/profilepic_chris"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/packages_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:id="@+id/packages_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/previous_package"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:paddingBottom="4dp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/care_package_reviews"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false" />
+
+    </LinearLayout>
+
+</FrameLayout>
