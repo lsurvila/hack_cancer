@@ -16,6 +16,7 @@ import co.hackcancer.hackcancer.helper.VerticalDividerSpaceItemDecoration;
 import co.hackcancer.hackcancer.network.MockHackCancerApi;
 import co.hackcancer.hackcancer.network.StaticDataHolder;
 import co.hackcancer.hackcancer.network.response.CheersResponse;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
@@ -35,10 +36,10 @@ public class CheersFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private CheersAdapter cheersAdapter;
     private RecyclerView listView;
     private ProgressBar progressBar;
     private CheersAdapter adapter;
+    private Subscription cheersSubscription;
 
     /**
      * Use this factory method to create a new instance of
@@ -89,7 +90,13 @@ public class CheersFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // TODO call real api when there is enough data
-        MockHackCancerApi.getInstance(getContext()).getCheers(StaticDataHolder.getUserId())
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        cheersSubscription = MockHackCancerApi.getInstance(getContext()).getCheers(StaticDataHolder.getUserId())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<CheersResponse>() {
                     @Override
@@ -105,6 +112,14 @@ public class CheersFragment extends Fragment {
 
                     }
                 });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (cheersSubscription != null) {
+            cheersSubscription.unsubscribe();
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        mViewPager.setOffscreenPageLimit(4);
+        //mViewPager.setOffscreenPageLimit(4);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);

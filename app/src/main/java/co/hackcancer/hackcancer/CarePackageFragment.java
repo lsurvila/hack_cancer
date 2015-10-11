@@ -21,6 +21,7 @@ import co.hackcancer.hackcancer.network.StaticDataHolder;
 import co.hackcancer.hackcancer.network.response.PackagesResponse;
 import co.hackcancer.hackcancer.network.response.Supporter;
 import co.hackcancer.hackcancer.network.response.SupportersResponse;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
@@ -44,6 +45,9 @@ public class CarePackageFragment extends Fragment {
     private ProductRatingsAdapter adapter;
     private List<ImageView> profilePics = new ArrayList<>();
     private View supportersView;
+    private View progressBar;
+    private Subscription supportersSubscription;
+    private Subscription packagesSubscription;
 
     /**
      * Use this factory method to create a new instance of
@@ -85,6 +89,7 @@ public class CarePackageFragment extends Fragment {
         listView = (RecyclerView) view.findViewById(R.id.care_package_reviews);
         listView.setLayoutManager(new LinearLayoutManager(getContext()));
         listView.setAdapter(adapter);
+        progressBar = view.findViewById(R.id.packages_progress);
         ImageView supporter1 = (ImageView) view.findViewById(R.id.supporter_1);
         ImageView supporter2 = (ImageView) view.findViewById(R.id.supporter_2);
         ImageView supporter3 = (ImageView) view.findViewById(R.id.supporter_3);
@@ -100,14 +105,24 @@ public class CarePackageFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onResume() {
+        super.onResume();
         getSupportersAndPackages();
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (supportersSubscription != null) {
+            supportersSubscription.unsubscribe();
+        }
+        if (packagesSubscription != null) {
+            packagesSubscription.unsubscribe();
+        }
     }
 
     private void getSupportersAndPackages() {
-        HackCancerApi.getInstance().getSupporters(StaticDataHolder.getUserId())
+        supportersSubscription = HackCancerApi.getInstance().getSupporters(StaticDataHolder.getUserId())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<SupportersResponse>() {
                     @Override
@@ -120,28 +135,33 @@ public class CarePackageFragment extends Fragment {
                                 profilePics.get(i).setVisibility(View.VISIBLE);
                                 profilePics.get(i).setImageResource(StaticDataHolder.getInstance().getProfileImage(supporter.id));
                             }
+                        } else {
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
                         Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
                     }
                 });
     }
 
     private void getPackages() {
-        MockHackCancerApi.getInstance(getContext()).getPackages(StaticDataHolder.getUserId())
+        packagesSubscription = MockHackCancerApi.getInstance(getContext()).getPackages(StaticDataHolder.getUserId())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<PackagesResponse>() {
                     @Override
                     public void call(PackagesResponse packagesResponse) {
                         adapter.refresh(packagesResponse.packages);
+                        progressBar.setVisibility(View.GONE);
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
                         Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
                     }
                 });
     }

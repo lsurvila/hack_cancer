@@ -110,6 +110,13 @@
 
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/packages_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:layout_gravity="center"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/care_package_reviews"
         android:layout_width="match_parent"
