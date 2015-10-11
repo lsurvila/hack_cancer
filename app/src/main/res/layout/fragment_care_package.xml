@@ -50,7 +50,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_content"
-        android:padding="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -59,7 +62,7 @@
             android:layout_height="wrap_content"
             android:text="@string/they_contributed"
             android:textSize="20sp"
-            android:paddingBottom="16dp"
+            android:paddingBottom="8dp"
             android:textColor="@color/colorAccent"/>
 
         <LinearLayout
@@ -116,11 +119,33 @@
         android:layout_height="wrap_content"
         android:paddingTop="16dp"
         android:layout_gravity="center"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/care_package_reviews"
+    
+    <LinearLayout
+        android:id="@+id/packages_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/previous_package"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:paddingBottom="4dp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/care_package_reviews"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false" />
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

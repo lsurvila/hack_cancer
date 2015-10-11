@@ -24,6 +24,7 @@ import co.hackcancer.hackcancer.network.response.SupportersResponse;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 
 /**
@@ -45,6 +46,7 @@ public class CarePackageFragment extends Fragment {
     private ProductRatingsAdapter adapter;
     private List<ImageView> profilePics = new ArrayList<>();
     private View supportersView;
+    private View packagesView;
     private View progressBar;
     private Subscription supportersSubscription;
     private Subscription packagesSubscription;
@@ -95,12 +97,14 @@ public class CarePackageFragment extends Fragment {
         ImageView supporter3 = (ImageView) view.findViewById(R.id.supporter_3);
         ImageView supporter4 = (ImageView) view.findViewById(R.id.supporter_4);
         ImageView supporter5 = (ImageView) view.findViewById(R.id.supporter_5);
+        profilePics.clear();
         profilePics.add(supporter1);
         profilePics.add(supporter2);
         profilePics.add(supporter3);
         profilePics.add(supporter4);
         profilePics.add(supporter5);
         supportersView = view.findViewById(R.id.container_supporters);
+        packagesView = view.findViewById(R.id.packages_container);
         return view;
     }
 
@@ -124,6 +128,7 @@ public class CarePackageFragment extends Fragment {
     private void getSupportersAndPackages() {
         supportersSubscription = HackCancerApi.getInstance().getSupporters(StaticDataHolder.getUserId())
                 .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
                 .subscribe(new Action1<SupportersResponse>() {
                     @Override
                     public void call(SupportersResponse supportersResponse) {
@@ -151,10 +156,14 @@ public class CarePackageFragment extends Fragment {
     private void getPackages() {
         packagesSubscription = MockHackCancerApi.getInstance(getContext()).getPackages(StaticDataHolder.getUserId())
                 .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
                 .subscribe(new Action1<PackagesResponse>() {
                     @Override
                     public void call(PackagesResponse packagesResponse) {
                         adapter.refresh(packagesResponse.packages);
+                        if (packagesResponse.packages.size() > 0) {
+                            packagesView.setVisibility(View.VISIBLE);
+                        }
                         progressBar.setVisibility(View.GONE);
                     }
                 }, new Action1<Throwable>() {
