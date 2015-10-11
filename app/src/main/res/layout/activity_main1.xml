@@ -19,7 +19,8 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/color_action_bar" />
+            android:background="@color/color_action_bar"
+            app:tabPadding="8dp"/>
 
     </android.support.design.widget.AppBarLayout>
 

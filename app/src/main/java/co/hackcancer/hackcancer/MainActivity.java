@@ -9,6 +9,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import co.hackcancer.hackcancer.network.StaticDataHolder;
+
 public class MainActivity extends AppCompatActivity implements
         CalendarFragment.OnFragmentInteractionListener,
         CarePackageFragment.OnFragmentInteractionListener,
@@ -48,6 +50,10 @@ public class MainActivity extends AppCompatActivity implements
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+        tabLayout.getTabAt(0).setIcon(R.drawable.loved);
+        tabLayout.getTabAt(1).setIcon(R.drawable.calendar);
+        tabLayout.getTabAt(2).setIcon(R.drawable.pink_box);
+        tabLayout.getTabAt(3).setIcon(StaticDataHolder.getInstance().getProfileImage(StaticDataHolder.getUserId()));
 
     }
 
@@ -91,16 +97,16 @@ public class MainActivity extends AppCompatActivity implements
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return getString(R.string.section_cheers);
-                case 1:
-                    return getString(R.string.section_calendar);
-                case 2:
-                    return getString(R.string.section_care_package);
-                case 3:
-                    return getString(R.string.section_profile);
-            }
+//            switch (position) {
+//                case 0:
+//                    return getString(R.string.section_cheers);
+//                case 1:
+//                    return getString(R.string.section_calendar);
+//                case 2:
+//                    return getString(R.string.section_care_package);
+//                case 3:
+//                    return getString(R.string.section_profile);
+//            }
             return null;
         }
     }
