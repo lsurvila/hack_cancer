@@ -64,11 +64,6 @@ public class MainSupporterActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onBackPressed() {
-
-    }
-
-    @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
