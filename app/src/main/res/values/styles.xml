@@ -30,4 +30,9 @@
     <style name="WelcomeButton" parent="WelcomeHeading">
         <item name="android:background">@drawable/rounded_button</item>
     </style>
+
+    <style name="SmallerButton" parent="WelcomeHeading">
+        <item name="android:background">@drawable/rounded_button</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>
