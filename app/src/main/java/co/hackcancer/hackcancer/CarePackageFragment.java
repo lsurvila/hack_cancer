@@ -87,7 +87,7 @@ public class CarePackageFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_care_package, container, false);
-        adapter = new ProductRatingsAdapter();
+        adapter = new ProductRatingsAdapter(getFragmentManager());
         listView = (RecyclerView) view.findViewById(R.id.care_package_reviews);
         listView.setLayoutManager(new LinearLayoutManager(getContext()));
         listView.setAdapter(adapter);

@@ -10,12 +10,12 @@
     android:paddingTop="16dp"
     android:paddingBottom="16dp">
 
-    <ImageView
+    <co.hackcancer.hackcancer.layouts.RoundedImageView
         android:id="@+id/cheer_profile_image"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_gravity="center_vertical"
         android:src="@drawable/profilepic_adriana" />
 

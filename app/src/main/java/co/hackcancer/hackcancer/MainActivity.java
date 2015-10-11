@@ -8,7 +8,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 
+import co.hackcancer.hackcancer.layouts.RoundedImageView;
 import co.hackcancer.hackcancer.network.StaticDataHolder;
 
 public class MainActivity extends AppCompatActivity implements
@@ -50,11 +52,10 @@ public class MainActivity extends AppCompatActivity implements
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-        tabLayout.getTabAt(0).setIcon(R.drawable.loved);
+        tabLayout.getTabAt(0).setIcon(R.drawable.herat_messages);
         tabLayout.getTabAt(1).setIcon(R.drawable.calendar);
         tabLayout.getTabAt(2).setIcon(R.drawable.pink_box);
         tabLayout.getTabAt(3).setIcon(StaticDataHolder.getInstance().getProfileImage(StaticDataHolder.getUserId()));
-
     }
 
     @Override

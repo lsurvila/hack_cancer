@@ -70,39 +70,39 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
+            <co.hackcancer.hackcancer.layouts.RoundedImageView
                 android:id="@+id/supporter_1"
                 android:layout_width="@dimen/contributed_profile_pic_dim"
                 android:layout_height="@dimen/contributed_profile_pic_dim"
-                android:paddingRight="8dp"
+                android:layout_marginRight="8dp"
                 android:src="@drawable/profilepic_chim"
                 android:visibility="gone"/>
 
-            <ImageView
+            <co.hackcancer.hackcancer.layouts.RoundedImageView
                 android:id="@+id/supporter_2"
                 android:layout_width="@dimen/contributed_profile_pic_dim"
                 android:layout_height="@dimen/contributed_profile_pic_dim"
-                android:paddingRight="8dp"
+                android:layout_marginRight="8dp"
                 android:src="@drawable/profilepic_chris"
                 android:visibility="gone"/>
 
-            <ImageView
+            <co.hackcancer.hackcancer.layouts.RoundedImageView
                 android:id="@+id/supporter_3"
                 android:layout_width="@dimen/contributed_profile_pic_dim"
                 android:layout_height="@dimen/contributed_profile_pic_dim"
-                android:paddingRight="8dp"
+                android:layout_marginRight="8dp"
                 android:src="@drawable/profilepic_joshua"
                 android:visibility="gone"/>
 
-            <ImageView
+            <co.hackcancer.hackcancer.layouts.RoundedImageView
                 android:id="@+id/supporter_4"
                 android:layout_width="@dimen/contributed_profile_pic_dim"
                 android:layout_height="@dimen/contributed_profile_pic_dim"
-                android:paddingRight="8dp"
+                android:layout_marginRight="8dp"
                 android:src="@drawable/profilepic_liudas"
                 android:visibility="gone"/>
 
-            <ImageView
+            <co.hackcancer.hackcancer.layouts.RoundedImageView
                 android:id="@+id/supporter_5"
                 android:layout_width="@dimen/contributed_profile_pic_dim"
                 android:layout_height="@dimen/contributed_profile_pic_dim"
