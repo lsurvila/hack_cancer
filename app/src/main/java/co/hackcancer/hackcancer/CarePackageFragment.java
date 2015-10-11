@@ -4,9 +4,18 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import co.hackcancer.hackcancer.network.MockHackCancerApi;
+import co.hackcancer.hackcancer.network.StaticDataHolder;
+import co.hackcancer.hackcancer.network.response.PackagesResponse;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 
 /**
@@ -22,7 +31,10 @@ public class CarePackageFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
+    private RecyclerView listView;
     private OnFragmentInteractionListener mListener;
+    private ProductRatingsAdapter adapter;
 
     /**
      * Use this factory method to create a new instance of
@@ -59,7 +71,32 @@ public class CarePackageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_care_package, container, false);
+        View view = inflater.inflate(R.layout.fragment_care_package, container, false);
+        adapter = new ProductRatingsAdapter();
+        listView = (RecyclerView) view.findViewById(R.id.care_package_reviews);
+        listView.setLayoutManager(new LinearLayoutManager(getContext()));
+        listView.setAdapter(adapter);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        MockHackCancerApi.getInstance(getContext()).getPackages(StaticDataHolder.getUserId())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<PackagesResponse>() {
+                    @Override
+                    public void call(PackagesResponse packagesResponse) {
+                        adapter.refresh(packagesResponse.packages);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

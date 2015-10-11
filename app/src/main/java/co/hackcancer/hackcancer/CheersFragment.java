@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import co.hackcancer.hackcancer.helper.VerticalDividerSpaceItemDecoration;
 import co.hackcancer.hackcancer.network.MockHackCancerApi;
+import co.hackcancer.hackcancer.network.StaticDataHolder;
 import co.hackcancer.hackcancer.network.response.CheersResponse;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -87,7 +88,8 @@ public class CheersFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        MockHackCancerApi.getInstance(getContext()).getCheers(1)
+        // TODO call real api when there is enough data
+        MockHackCancerApi.getInstance(getContext()).getCheers(StaticDataHolder.getUserId())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<CheersResponse>() {
                     @Override

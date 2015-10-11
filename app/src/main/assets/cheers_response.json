@@ -16,7 +16,7 @@
       from_id: 2,
       to_id: 1,
       message_type: "image",
-      message_text: "Your favourite roses!"
+      message_text: "Your favourite flowers!"
     },
     {
       from_id: 5,

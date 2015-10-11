@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.hackcancer.hackcancer.network.ProfileImagesHolder;
+import co.hackcancer.hackcancer.network.StaticDataHolder;
 import co.hackcancer.hackcancer.network.response.Cheer;
 
 public class CheersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -54,14 +54,14 @@ public class CheersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 CheerViewHolder textCheerViewHolder = (CheerViewHolder) viewHolder;
                 Cheer textCheer = getItem(position);
                 textCheerViewHolder.text.setText(textCheer.messageText);
-                textCheerViewHolder.profileImage.setImageResource(ProfileImagesHolder.getInstance().getImage(textCheer.fromId));
+                textCheerViewHolder.profileImage.setImageResource(StaticDataHolder.getInstance().getProfileImage(textCheer.fromId));
                 textCheerViewHolder.image.setVisibility(View.GONE);
                 break;
             case VIEW_TYPE_IMAGE:
                 CheerViewHolder cheerViewHolder = (CheerViewHolder) viewHolder;
                 Cheer cheer = getItem(position);
                 cheerViewHolder.text.setText(cheer.messageText);
-                cheerViewHolder.profileImage.setImageResource(ProfileImagesHolder.getInstance().getImage(cheer.fromId));
+                cheerViewHolder.profileImage.setImageResource(StaticDataHolder.getInstance().getProfileImage(cheer.fromId));
                 cheerViewHolder.image.setImageResource(R.drawable.roses);
                 break;
         }

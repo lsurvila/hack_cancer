@@ -4,7 +4,7 @@ import android.content.Context;
 
 import co.hackcancer.hackcancer.helper.JsonHelper;
 import co.hackcancer.hackcancer.network.response.CheersResponse;
-import co.hackcancer.hackcancer.network.response.UserResponse;
+import co.hackcancer.hackcancer.network.response.PackagesResponse;
 import retrofit.MockRestAdapter;
 import retrofit.RestAdapter;
 import retrofit.http.Path;
@@ -33,12 +33,12 @@ public class MockHackCancerApi {
         service = mockRestAdapter.create(HackCancerService.class, new MockHackCancerService(context));
     }
 
-    public Observable<UserResponse> getUsers() {
-        return service.getUsers();
-    }
-
     public Observable<CheersResponse> getCheers(int userId) {
         return service.getCheers(userId);
+    }
+
+    public Observable<PackagesResponse> getPackages(int userId) {
+        return service.getPackages(userId);
     }
 
     private class MockHackCancerService implements HackCancerService {
@@ -50,22 +50,22 @@ public class MockHackCancerApi {
         }
 
         @Override
-        public Observable<UserResponse> getUsers() {
-            return Observable.create(new Observable.OnSubscribe<UserResponse>() {
+        public Observable<CheersResponse> getCheers(@Path("user_id") int userId) {
+            return Observable.create(new Observable.OnSubscribe<CheersResponse>() {
                 @Override
-                public void call(Subscriber<? super UserResponse> subscriber) {
-                    subscriber.onNext(JsonHelper.getJsonAsObjectFromAssetsFile(context, "users_response.json", UserResponse.class));
+                public void call(Subscriber<? super CheersResponse> subscriber) {
+                    subscriber.onNext(JsonHelper.getJsonAsObjectFromAssetsFile(context, "cheers_response.json", CheersResponse.class));
                     subscriber.onCompleted();
                 }
             });
         }
 
         @Override
-        public Observable<CheersResponse> getCheers(@Path("user_id") int userId) {
-            return Observable.create(new Observable.OnSubscribe<CheersResponse>() {
+        public Observable<PackagesResponse> getPackages(@Path("user_id") int userId) {
+            return Observable.create(new Observable.OnSubscribe<PackagesResponse>() {
                 @Override
-                public void call(Subscriber<? super CheersResponse> subscriber) {
-                    subscriber.onNext(JsonHelper.getJsonAsObjectFromAssetsFile(context, "cheers_response.json", CheersResponse.class));
+                public void call(Subscriber<? super PackagesResponse> subscriber) {
+                    subscriber.onNext(JsonHelper.getJsonAsObjectFromAssetsFile(context, "packages_response.json", PackagesResponse.class));
                     subscriber.onCompleted();
                 }
             });

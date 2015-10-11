@@ -1,7 +1,7 @@
 package co.hackcancer.hackcancer.network;
 
 import co.hackcancer.hackcancer.network.response.CheersResponse;
-import co.hackcancer.hackcancer.network.response.UserResponse;
+import co.hackcancer.hackcancer.network.response.PackagesResponse;
 import retrofit.RestAdapter;
 import rx.Observable;
 
@@ -27,12 +27,12 @@ public class HackCancerApi {
         service = restAdapter.create(HackCancerService.class);
     }
 
-    public Observable<UserResponse> getUsers() {
-        return service.getUsers();
-    }
-
     public Observable<CheersResponse> getCheers(int userId) {
         return service.getCheers(userId);
+    }
+
+    public Observable<PackagesResponse> getPackages(int userId) {
+        return service.getPackages(userId);
     }
 
 }
