@@ -13,12 +13,16 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import co.hackcancer.hackcancer.helper.VerticalDividerSpaceItemDecoration;
+import co.hackcancer.hackcancer.network.HackCancerApi;
 import co.hackcancer.hackcancer.network.MockHackCancerApi;
 import co.hackcancer.hackcancer.network.StaticDataHolder;
 import co.hackcancer.hackcancer.network.response.CheersResponse;
+import co.hackcancer.hackcancer.network.response.Status;
+import co.hackcancer.hackcancer.network.response.StatusResponse;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 
 /**
@@ -37,6 +41,13 @@ public class FighterFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     private ProgressBar progressBar;
+    private ProgressBar progressBar2;
+    private RecyclerView listView;
+    private StatusAdapter adapter;
+
+    private Subscription statusSubscription;
+
+    private View statusView;
 
     /**
      * Use this factory method to create a new instance of
@@ -60,6 +71,32 @@ public class FighterFragment extends Fragment {
         // Required empty public constructor
     }
 
+    private void getStatuses() {
+        statusSubscription = HackCancerApi.getInstance().getStatuses(1)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
+                .subscribe(new Action1<StatusResponse>() {
+                    @Override
+                    public void call(StatusResponse statusResponse) {
+                        if (statusResponse.statuses.size() > 0) {
+                            statusView.setVisibility(View.VISIBLE);
+
+                            for (int i = 0; i < statusResponse.statuses.size(); i++) {
+                                Status supporter = statusResponse.statuses.get(i);
+                                //profilePics.get(i).setVisibility(View.VISIBLE);
+                                //profilePics.get(i).setImageResource(StaticDataHolder.getInstance().getProfileImage(supporter.id));
+                            }
+                        }
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
+                    }
+                });
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +112,16 @@ public class FighterFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fighter, container, false);
         progressBar = (ProgressBar) view.findViewById(R.id.cheers_loading);
+        progressBar2 = (ProgressBar) view.findViewById(R.id.packages_progress);
+
+        adapter = new StatusAdapter(getFragmentManager());
+
+        listView = (RecyclerView) view.findViewById(R.id.care_package_reviews);
+        listView.setLayoutManager(new LinearLayoutManager(getContext()));
+        listView.setAdapter(adapter);
+
+        statusView = view.findViewById(R.id.container_statuses);
+
         return view;
     }
 
@@ -90,12 +137,17 @@ public class FighterFragment extends Fragment {
         super.onResume();
 
         progressBar.setVisibility(View.GONE);
+        progressBar2.setVisibility(View.GONE);
 
+        getStatuses();
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        if (statusSubscription != null) {
+            statusSubscription.unsubscribe();
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
