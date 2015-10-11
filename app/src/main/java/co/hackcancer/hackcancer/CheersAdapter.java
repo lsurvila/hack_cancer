@@ -62,7 +62,7 @@ public class CheersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 Cheer cheer = getItem(position);
                 cheerViewHolder.text.setText(cheer.messageText);
                 cheerViewHolder.profileImage.setImageResource(StaticDataHolder.getInstance().getProfileImage(cheer.fromId));
-                cheerViewHolder.image.setImageResource(R.drawable.roses);
+                cheerViewHolder.image.setImageResource(StaticDataHolder.getInstance().getCheersImage(cheer.messageType));
                 break;
         }
     }

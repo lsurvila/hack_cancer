@@ -2,12 +2,15 @@ package co.hackcancer.hackcancer.network;
 
 import android.util.SparseArray;
 
+import java.util.HashMap;
+
 import co.hackcancer.hackcancer.R;
 
 public class StaticDataHolder {
     private static StaticDataHolder ourInstance;
     private SparseArray<Integer> profileImageHolder;
     private SparseArray<Integer> packageImageHolder;
+    private HashMap<String, Integer> cheersImageHolder;
     private static final int USER_ID = 1;
 
     public static StaticDataHolder getInstance() {
@@ -32,6 +35,11 @@ public class StaticDataHolder {
         packageImageHolder.append(3, R.drawable.biotene_mouth_wash);
         packageImageHolder.append(4, R.drawable.blanket);
         packageImageHolder.append(5, R.drawable.brow_stencils);
+
+        cheersImageHolder = new HashMap<>();
+        cheersImageHolder.put("picture:love", R.drawable.image3);
+        cheersImageHolder.put("picture:cat", R.drawable.image5);
+        cheersImageHolder.put("picture:latte", R.drawable.image8);
     }
 
     public int getProfileImage(long userId) {
@@ -40,6 +48,10 @@ public class StaticDataHolder {
 
     public int getPackageImage(long packageId) {
         return packageImageHolder.get((int) packageId);
+    }
+
+    public int getCheersImage(String image) {
+        return cheersImageHolder.get(image);
     }
 
     public static int getUserId() {
