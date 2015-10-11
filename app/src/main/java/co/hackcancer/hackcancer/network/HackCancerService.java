@@ -2,6 +2,7 @@ package co.hackcancer.hackcancer.network;
 
 import co.hackcancer.hackcancer.network.response.CheersResponse;
 import co.hackcancer.hackcancer.network.response.PackagesResponse;
+import co.hackcancer.hackcancer.network.response.StatusResponse;
 import co.hackcancer.hackcancer.network.response.SupportersResponse;
 import retrofit.http.GET;
 import retrofit.http.Path;
@@ -17,5 +18,8 @@ public interface HackCancerService {
 
     @GET("/users/{user_id}/supporters")
     Observable<SupportersResponse> getSupporters(@Path("user_id") int userId);
+
+    @GET("/users/{user_id}/status")
+    Observable<StatusResponse> getStatuses(@Path("user_id") int userId);
 
 }
