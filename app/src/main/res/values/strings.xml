@@ -24,5 +24,6 @@
     <string name="suggest_items">Suggest items</string>
     <string name="they_contributed">They contributed:</string>
     <string name="previous_package">In your previous care package:</string>
+    <string name="submit_review_title">What did you like or didn\'t like about this product?</string>
 
 </resources>

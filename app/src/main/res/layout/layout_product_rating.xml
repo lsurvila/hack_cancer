@@ -4,7 +4,10 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
     <ImageView
         android:id="@+id/product_image"
@@ -31,8 +34,13 @@
 
         <RatingBar
             style="?android:attr/ratingBarStyleIndicator"
+            android:id="@+id/product_rating_stars"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:focusable="true"/>
 
 
     </LinearLayout>
