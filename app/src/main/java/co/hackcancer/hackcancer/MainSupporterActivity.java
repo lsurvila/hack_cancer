@@ -15,13 +15,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import co.hackcancer.hackcancer.network.StaticDataHolder;
+
 /**
  * Created by Chris on 11/10/2015.
  */
 public class MainSupporterActivity extends AppCompatActivity implements
         CalendarFragment.OnFragmentInteractionListener,
         CarePackageFragment.OnFragmentInteractionListener,
-        CheersFragment.OnFragmentInteractionListener,
+        FighterFragment.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener {
 
     /**
@@ -56,8 +58,10 @@ public class MainSupporterActivity extends AppCompatActivity implements
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-            }
+        tabLayout.getTabAt(0).setIcon(R.drawable.ribbon);
+        tabLayout.getTabAt(1).setIcon(R.drawable.heart_messages);
+        tabLayout.getTabAt(2).setIcon(StaticDataHolder.getInstance().getProfileImage(StaticDataHolder.getUserId()));
+    }
 
     @Override
     public void onBackPressed() {
@@ -111,7 +115,7 @@ public class MainSupporterActivity extends AppCompatActivity implements
             switch (position) {
                 case 0:
                 default:
-                    return CheersFragment.newInstance("param1", "param2");
+                    return FighterFragment.newInstance("param1", "param2");
                 case 1:
                     return CalendarFragment.newInstance("param1", "param2");
                 case 2:
