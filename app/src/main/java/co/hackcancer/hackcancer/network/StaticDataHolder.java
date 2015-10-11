@@ -19,11 +19,12 @@ public class StaticDataHolder {
 
     private StaticDataHolder() {
         profileImageHolder = new SparseArray<>();
-        profileImageHolder.append(1, R.drawable.profilepic_adriana);
+        profileImageHolder.append(1, R.drawable.profilepic_debra);
         profileImageHolder.append(2, R.drawable.profilepic_chim);
         profileImageHolder.append(3, R.drawable.profilepic_chris);
         profileImageHolder.append(4, R.drawable.profilepic_joshua);
         profileImageHolder.append(5, R.drawable.profilepic_liudas);
+        profileImageHolder.append(6, R.drawable.profilepic_adriana);
 
         packageImageHolder = new SparseArray<>();
         packageImageHolder.append(1, R.drawable.aloe_socks);
