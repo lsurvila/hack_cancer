@@ -86,6 +86,24 @@ public class ProductRatingsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             text = (TextView) itemView.findViewById(R.id.product_name);
             image = (ImageView) itemView.findViewById(R.id.product_image);
             ratingBar = (RatingBar) itemView.findViewById(R.id.product_rating_stars);
+            switch (getLayoutPosition()) {
+                case 0:
+                    ratingBar.setNumStars(3);
+                    break;
+                case 1:
+                    ratingBar.setNumStars(5);
+                    break;
+                case 2:
+                    ratingBar.setNumStars(4);
+                    break;
+                case 3:
+                    ratingBar.setNumStars(5);
+                    break;
+                case 4:
+                    ratingBar.setNumStars(3);
+                    break;
+            }
+
             ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
                 @Override
                 public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
