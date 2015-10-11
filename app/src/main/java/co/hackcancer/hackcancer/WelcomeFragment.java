@@ -39,6 +39,7 @@ public class WelcomeFragment extends Fragment {
         mFighterText = (TextView) mWelcomeContainer.findViewById(R.id.fighter);
         mHiThereText = (TextView) mWelcomeContainer.findViewById(R.id.hiThere);
 
+
         mHiThereText.setText(String.format(getString(R.string.WelcomeText), "Chris"));
     }
 }

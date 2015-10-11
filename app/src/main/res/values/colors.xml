@@ -11,4 +11,6 @@
     <color name="textColour">#FFFFFF</color>
 
     <color name="WelcomeButtonColour">#C8BDFF</color>
+
+    <color name="FriendListItemBackground">#6F7FE7</color>
 </resources>

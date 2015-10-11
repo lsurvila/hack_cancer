@@ -7,8 +7,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
+
 
 public class WelcomeActivity extends AppCompatActivity {
+
+    private Fragment mWelcomeFragment;
+    private Fragment mFacebookFragment;
+    private Fragment mYourFriendsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,11 +22,11 @@ public class WelcomeActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_welcome);
 
-        Fragment fragment = new WelcomeFragment();
+        mWelcomeFragment = new WelcomeFragment();
 // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.mainFrame, fragment)
+                .replace(R.id.mainFrame, mWelcomeFragment)
                 .commit();
     }
 
@@ -45,16 +51,25 @@ public class WelcomeActivity extends AppCompatActivity {
         };
         timer.start();
 
-
+        ((FacebookLoginFragment) mFacebookFragment).showFacebookSignIn(false);
+        ((FacebookLoginFragment) mFacebookFragment).showFacebookInvites(true);
     }
 
     public void goToFighterLogin(View view) {
-        Fragment fragment = new FacebookLoginFragment();
-// Insert the fragment by replacing any existing fragment
+        mFacebookFragment = new FacebookLoginFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.mainFrame, fragment)
+                .replace(R.id.mainFrame, mFacebookFragment)
                 .commit();
+    }
+
+    public void skipFbInvites(View view) {
+        mYourFriendsFragment = new YourFriendsFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.mainFrame, mYourFriendsFragment)
+                .commit();
+        //startActivity(new Intent(getBaseContext(), MainSupporterActivity.class));
     }
 
 }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:showIn="@layout/activity_main"
+    tools:context=".MainActivityFragment">
+
+    <TextView
+        android:text="@string/YourFriends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:padding="10dp"
+        android:background="@color/FriendListItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <co.hackcancer.hackcancer.layouts.RoundedImageView
+            android:id="@+id/profilePic1"
+            android:src="@drawable/profilepic_adriana"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:text="@string/Adriana"
+            android:textColor="@color/textColour"
+            android:paddingLeft="10dp"
+            android:textSize="16dp"
+            android:layout_toRightOf="@id/profilePic1"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/support1"
+            style="@style/SmallerButton"
+            android:text="@string/Support"
+            android:onClick="suppportAdriana"
+            android:visibility="gone"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textAlignment="center"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

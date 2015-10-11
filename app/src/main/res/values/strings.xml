@@ -8,6 +8,12 @@
     <string name="Supporter">supporting a friend</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="Skip">Skip</string>
+    <string name="YourFriends">Your Friends</string>
+    <string name="Support">support</string>
+
+    <string name="Adriana">Adriana Vecc</string>
+    <string name="Chim">Chimeren Peerbhai</string>
 
     <string name="section_cheers">Cheers</string>
     <string name="section_calendar">Calendar</string>
