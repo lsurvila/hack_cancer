@@ -2,6 +2,7 @@ package co.hackcancer.hackcancer.network;
 
 import co.hackcancer.hackcancer.network.response.CheersResponse;
 import co.hackcancer.hackcancer.network.response.PackagesResponse;
+import co.hackcancer.hackcancer.network.response.SupportersResponse;
 import retrofit.RestAdapter;
 import rx.Observable;
 
@@ -33,6 +34,10 @@ public class HackCancerApi {
 
     public Observable<PackagesResponse> getPackages(int userId) {
         return service.getPackages(userId);
+    }
+
+    public Observable<SupportersResponse> getSupporters(int userId) {
+        return service.getSupporters(userId);
     }
 
 }

@@ -9,11 +9,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import co.hackcancer.hackcancer.network.HackCancerApi;
 import co.hackcancer.hackcancer.network.MockHackCancerApi;
 import co.hackcancer.hackcancer.network.StaticDataHolder;
 import co.hackcancer.hackcancer.network.response.PackagesResponse;
+import co.hackcancer.hackcancer.network.response.Supporter;
+import co.hackcancer.hackcancer.network.response.SupportersResponse;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
@@ -35,6 +42,7 @@ public class CarePackageFragment extends Fragment {
     private RecyclerView listView;
     private OnFragmentInteractionListener mListener;
     private ProductRatingsAdapter adapter;
+    private List<ImageView> profilePics = new ArrayList<>();
 
     /**
      * Use this factory method to create a new instance of
@@ -76,12 +84,49 @@ public class CarePackageFragment extends Fragment {
         listView = (RecyclerView) view.findViewById(R.id.care_package_reviews);
         listView.setLayoutManager(new LinearLayoutManager(getContext()));
         listView.setAdapter(adapter);
+        ImageView supporter1 = (ImageView) view.findViewById(R.id.supporter_1);
+        ImageView supporter2 = (ImageView) view.findViewById(R.id.supporter_2);
+        ImageView supporter3 = (ImageView) view.findViewById(R.id.supporter_3);
+        ImageView supporter4 = (ImageView) view.findViewById(R.id.supporter_4);
+        ImageView supporter5 = (ImageView) view.findViewById(R.id.supporter_5);
+        profilePics.add(supporter1);
+        profilePics.add(supporter2);
+        profilePics.add(supporter3);
+        profilePics.add(supporter4);
+        profilePics.add(supporter5);
         return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getSupportersAndPackages();
+    }
+
+    private void getSupportersAndPackages() {
+        HackCancerApi.getInstance().getSupporters(StaticDataHolder.getUserId())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<SupportersResponse>() {
+                    @Override
+                    public void call(SupportersResponse supportersResponse) {
+                        if (supportersResponse.supporters.size() > 0) {
+                            for (int i = 0; i < supportersResponse.supporters.size(); i++) {
+                                Supporter supporter = supportersResponse.supporters.get(i);
+                                profilePics.get(i).setVisibility(View.VISIBLE);
+                                profilePics.get(i).setImageResource(StaticDataHolder.getInstance().getProfileImage(supporter.id));
+                            }
+                            getPackages();
+                        }
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void getPackages() {
         MockHackCancerApi.getInstance(getContext()).getPackages(StaticDataHolder.getUserId())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<PackagesResponse>() {
@@ -95,8 +140,6 @@ public class CarePackageFragment extends Fragment {
                         Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -5,6 +5,7 @@ import android.content.Context;
 import co.hackcancer.hackcancer.helper.JsonHelper;
 import co.hackcancer.hackcancer.network.response.CheersResponse;
 import co.hackcancer.hackcancer.network.response.PackagesResponse;
+import co.hackcancer.hackcancer.network.response.SupportersResponse;
 import retrofit.MockRestAdapter;
 import retrofit.RestAdapter;
 import retrofit.http.Path;
@@ -69,6 +70,11 @@ public class MockHackCancerApi {
                     subscriber.onCompleted();
                 }
             });
+        }
+
+        @Override
+        public Observable<SupportersResponse> getSupporters(@Path("user_id") int userId) {
+            return null;
         }
     }
 
