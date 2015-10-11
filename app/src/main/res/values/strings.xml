@@ -18,11 +18,17 @@
     <string name="section_cheers">Cheers</string>
     <string name="section_calendar">Calendar</string>
     <string name="section_care_package">Care Package</string>
+    <string name="section_profile">Profile</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="how_are_you">How are you feeling today?</string>
+    <string name="package_is_coming">A care package is coming your way!</string>
+    <string name="suggest_items">Suggest items</string>
+    <string name="they_contributed">They contributed:</string>
+    <string name="previous_package">In your previous care package:</string>
 
 </resources>

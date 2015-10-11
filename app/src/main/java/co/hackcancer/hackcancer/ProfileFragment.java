@@ -4,27 +4,20 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import co.hackcancer.hackcancer.helper.VerticalDividerSpaceItemDecoration;
-import co.hackcancer.hackcancer.network.MockHackCancerApi;
-import co.hackcancer.hackcancer.network.StaticDataHolder;
-import co.hackcancer.hackcancer.network.response.CheersResponse;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 
 
 /**
- * Allows Fighter to see cheers from people and update status.
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link ProfileFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link ProfileFragment#newInstance} factory method to
+ * create an instance of this fragment.
  */
-public class CheersFragment extends Fragment {
+public class ProfileFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -36,22 +29,17 @@ public class CheersFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private RecyclerView listView;
-    private ProgressBar progressBar;
-    private CheersAdapter adapter;
-    private Subscription cheersSubscription;
-
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment CheersFragment.
+     * @return A new instance of fragment ProfileFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CheersFragment newInstance(String param1, String param2) {
-        CheersFragment fragment = new CheersFragment();
+    public static ProfileFragment newInstance(String param1, String param2) {
+        ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,7 +47,7 @@ public class CheersFragment extends Fragment {
         return fragment;
     }
 
-    public CheersFragment() {
+    public ProfileFragment() {
         // Required empty public constructor
     }
 
@@ -76,50 +64,7 @@ public class CheersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_cheers, container, false);
-        progressBar = (ProgressBar) view.findViewById(R.id.cheers_loading);
-        listView = (RecyclerView) view.findViewById(R.id.cheers_list);
-        listView.setLayoutManager(new LinearLayoutManager(getContext()));
-        listView.addItemDecoration(new VerticalDividerSpaceItemDecoration(getResources().getDimensionPixelOffset(R.dimen.cheers_divider_height)));
-        adapter = new CheersAdapter();
-        listView.setAdapter(adapter);
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        // TODO call real api when there is enough data
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        cheersSubscription = MockHackCancerApi.getInstance(getContext()).getCheers(StaticDataHolder.getUserId())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<CheersResponse>() {
-                    @Override
-                    public void call(CheersResponse cheersResponse) {
-                        progressBar.setVisibility(View.GONE);
-                        adapter.refresh(cheersResponse.cheers);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        progressBar.setVisibility(View.GONE);
-                        Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (cheersSubscription != null) {
-            cheersSubscription.unsubscribe();
-        }
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

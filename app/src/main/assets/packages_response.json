@@ -1,0 +1,24 @@
+{
+  packages: [
+    {
+      name: "Aloe Socks",
+      packageId: 1
+    },
+    {
+      name: "Lavender Baby Oil",
+      packageId: 2
+    },
+    {
+      name: "Biotene Mouth Wash",
+      packageId: 3
+    },
+    {
+      name: "Blanket",
+      packageId: 4
+    },
+    {
+      name: "Brow Stencils",
+      packageId: 5
+    }
+  ]
+}

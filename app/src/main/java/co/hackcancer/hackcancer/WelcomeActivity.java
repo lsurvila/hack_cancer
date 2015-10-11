@@ -3,7 +3,6 @@ package co.hackcancer.hackcancer;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -29,14 +28,6 @@ public class WelcomeActivity extends AppCompatActivity {
         fragmentManager.beginTransaction()
                 .replace(R.id.mainFrame, mWelcomeFragment)
                 .commit();
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(), MainActivity.class));
-            }
-        });
     }
 
     public void loginWithFacebook(View view) {
@@ -50,6 +41,8 @@ public class WelcomeActivity extends AppCompatActivity {
                 try {
                     sleep(1000);
                     progress.dismiss();
+                    finish();
+                    startActivity(new Intent(getBaseContext(), MainActivity.class));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
