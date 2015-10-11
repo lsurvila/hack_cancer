@@ -6,6 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">#c5c5c5</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+
+        <item name="android:colorBackground">@color/backgroundColour</item>
+        <item name="android:colorForeground">@color/textColour</item>
     </style>
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -14,4 +20,22 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="LogoHeading" parent="AppTheme">
+        <item name="android:textColor">@color/textColour</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="WelcomeHeading" parent="AppTheme">
+        <item name="android:textColor">@color/textColour</item>
+        <item name="android:textSize">26sp</item>
+    </style>
+
+    <style name="WelcomeButton" parent="WelcomeHeading">
+        <item name="android:background">@drawable/rounded_button</item>
+    </style>
+
+    <style name="SmallerButton" parent="WelcomeHeading">
+        <item name="android:background">@drawable/rounded_button</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>

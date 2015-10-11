@@ -1,4 +1,34 @@
 <resources>
-    <string name="app_name">Hack Cancer</string>
+    <string name="app_name">Care &amp; Share</string>
     <string name="action_settings">Settings</string>
+
+    <string name="WelcomeText">Hi %s, what are you here for?</string>
+    <string name="IAmA">I am a</string>
+    <string name="Fighter">fighting cancer</string>
+    <string name="Supporter">supporting a friend</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="Skip">Skip</string>
+    <string name="YourFriends">Your Friends</string>
+    <string name="Support">support</string>
+
+    <string name="Adriana">Adriana Vecc</string>
+    <string name="Chim">Chimeren Peerbhai</string>
+
+    <string name="section_cheers">Cheers</string>
+    <string name="section_calendar">Calendar</string>
+    <string name="section_care_package">Care Package</string>
+    <string name="section_profile">Profile</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="how_are_you">How are you feeling today?</string>
+    <string name="package_is_coming">A care package is coming your way!</string>
+    <string name="suggest_items">Suggest items</string>
+    <string name="they_contributed">They contributed:</string>
+    <string name="previous_package">In your previous care package:</string>
+
 </resources>
